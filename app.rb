@@ -15,7 +15,7 @@ loop do
 
     # Only player1 aka \"Jin\" has ability to deflect
     if rand(100) <= 80
-        puts "#{player1} deflects the attack"
+        puts "#{player1.name} deflects the attack"
     else 
         player2.attack(player1)
     end
