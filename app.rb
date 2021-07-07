@@ -13,7 +13,7 @@ loop do
     puts "\n"
     break if player2.die?
 
-    # Only player1 aka \"Jin\" has ability to deflect
+    # Only player1 aka "Jin" has ability to deflect
     if rand(100) <= 80
         puts "#{player1.name} deflects the attack"
     else 
