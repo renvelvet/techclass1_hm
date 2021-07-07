@@ -9,15 +9,17 @@ puts "\n"
 
 loop do 
     player1.attack(player2)
+    player2.take_hitpoint(player1.damage)
     puts player2
     puts "\n"
     break if player2.die?
 
     # Only player1 aka "Jin" has ability to deflect
+    player2.attack(player1)
     if rand(100) <= 80
         puts "#{player1.name} deflects the attack"
-    else 
-        player2.attack(player1)
+    else
+        player1.take_hitpoint(player2.damage)
     end
     puts player1
     puts "\n"

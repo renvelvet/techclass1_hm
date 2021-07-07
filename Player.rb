@@ -1,5 +1,5 @@
 class Player
-	attr_reader :name
+	attr_reader :name, :damage
 
 	def initialize(name, hitpoint, damage)
 		@name = name
@@ -12,7 +12,6 @@ class Player
 	end
 
 	def attack(enemy)
-		enemy.take_hitpoint(@damage)
 		puts "#{@name} attacks #{enemy.name} with #{@damage} damage\n"
 	end
 
