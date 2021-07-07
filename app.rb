@@ -13,7 +13,12 @@ loop do
     puts "\n"
     break if player2.die?
 
-    player2.attack(player1)
+    # Only player1 aka \"Jin\" has ability to deflect
+    if rand(100) <= 80
+        puts "#{player1} deflects the attack"
+    else 
+        player2.attack(player1)
+    end
     puts player1
     puts "\n"
     break if player1.die?
