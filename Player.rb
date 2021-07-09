@@ -13,6 +13,7 @@ class Player
 
 	def attack(enemy)
 		puts "#{@name} attacks #{enemy.name} with #{@damage} damage\n"
+		enemy.take_hitpoint(@damage)
 	end
 
 	def take_hitpoint(damage)
@@ -24,7 +25,6 @@ class Player
 			puts "#{@name} dies\n"
 			true
 		end
-
 	end
 
 end

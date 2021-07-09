@@ -1,27 +1,52 @@
-require_relative 'Player.rb'
+require_relative 'Hero.rb'
+require_relative 'Mongol.rb'
+require_relative 'Archer.rb'
+require_relative 'Swordsman.rb'
+require_relative 'Spearman.rb'
 
-player1 = Player.new("Jin Sakai", 100, 50)
-player2 = Player.new("Khotun Khan", 500, 50)
+jin = Hero.new("Jin Sakai", 100, 50, 0.8)
+archer = Archer.new
+swordsman = Swordsman.new
+spearman = Spearman.new
+villains = [archer, swordsman, spearman]
 
-puts player1
-puts player2
-puts "\n"
-
-loop do 
-    player1.attack(player2)
-    player2.take_hitpoint(player1.damage)
-    puts player2
+def print_turn(number)
+    puts "========= Turn #{number} ========="
     puts "\n"
-    break if player2.die?
+end
 
-    # Only player1 aka "Jin" has ability to deflect
-    player2.attack(player1)
-    if rand(100) <= 80
-        puts "#{player1.name} deflects the attack"
-    else
-        player1.take_hitpoint(player2.damage)
+def hero_turn(hero, enemies)
+    hero.attack(enemies[rand(enemies.size)])
+end
+
+def delete_villain(villains)
+    villains.each do |villain|
+        villains.delete(villain) if villain.die? || villain.flee?
     end
-    puts player1
     puts "\n"
-    break if player1.die?
+end
+
+def villain_turn(villains, hero)
+    villains.each do |villain|
+        villain.attack(hero)
+    end
+    puts "\n"
+end
+
+# Gameplay
+i = 1
+until (jin.die? || villains.empty?) do
+    print_turn(i)
+
+    puts jin
+    villains.each do |villain|
+        puts villain
+    end
+    puts "\n"
+
+    hero_turn(jin, villains)
+    delete_villain(villains)
+    villain_turn(villains, jin)
+
+    i += 1
 end
